@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import { getUrlDetails } from "./config/config";
+// import { getUrlDetails } from "./config/config";
 
-const { baseUrl, timeStamp, publicKey, hash } = getUrlDetails();
+// const { baseUrl, timeStamp, publicKey, hash } = getUrlDetails();
 export default class New extends Component {
   constructor() {
     super();
@@ -28,8 +28,6 @@ export default class New extends Component {
   render() {
     return (
       <div>
-        
-
         <h1>Marvel Comics</h1>
         {/* <img src={this.state.imgUrl} alt="a" /> */}
       </div>

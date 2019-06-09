@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <div>
       <nav className="mb-1 navbar navbar-expand-lg navbar-dark indigo lighten-1">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="##">
           Marvel Comics
         </a>
         <button
@@ -24,29 +24,29 @@ export default function Navbar() {
         >
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="##">
                 Home
                 <span className="sr-only">(current)</span>
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="##">
                 Characters
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="##">
                 Comics
               </a>
             </li>
           </ul>
           <ul className="navbar-nav ml-auto nav-flex-icons">
             <li className="nav-item avatar">
-              <a className="nav-link p-0" href="#">
+              <a className="nav-link p-0" href="##">
                 <img
                   src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
                   className="rounded-circle z-depth-0"
-                  alt="avatar image"
+                  alt="avatar"
                   height="35"
                 />
               </a>
