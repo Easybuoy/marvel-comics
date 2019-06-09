@@ -1,7 +1,28 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-export default function Navbar() {
+function Navbar(props) {
+  const { pathname } = props.location;
+  let homeClassName = "nav-item";
+  let charactersClassName = "nav-item";
+  let comicsClassName = "nav-item";
+  if (pathname === "/") {
+    homeClassName = "nav-item active";
+    charactersClassName = "nav-item";
+    comicsClassName = "nav-item";
+  } else if (pathname === "/characters") {
+    homeClassName = "nav-item";
+    charactersClassName = "nav-item active";
+    comicsClassName = "nav-item";
+  } else if (pathname === "/comics") {
+    homeClassName = "nav-item";
+    charactersClassName = "nav-item";
+    comicsClassName = "nav-item active";
+  } else {
+    homeClassName = "nav-item";
+    charactersClassName = "nav-item";
+    comicsClassName = "nav-item";
+  }
   return (
     <div>
       <nav className="mb-1 navbar navbar-expand-lg navbar-dark indigo lighten-1">
@@ -24,18 +45,18 @@ export default function Navbar() {
           id="navbarSupportedContent-555"
         >
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
+            <li className={homeClassName}>
               <Link className="nav-link" to="/">
                 Home
                 <span className="sr-only">(current)</span>
               </Link>
             </li>
-            <li className="nav-item">
+            <li className={charactersClassName}>
               <Link className="nav-link" to="characters">
                 Characters
               </Link>
             </li>
-            <li className="nav-item">
+            <li className={comicsClassName}>
               <Link className="nav-link" to="comics">
                 Comics
               </Link>
@@ -58,3 +79,5 @@ export default function Navbar() {
     </div>
   );
 }
+
+export default withRouter(Navbar);

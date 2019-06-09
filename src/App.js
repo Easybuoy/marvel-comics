@@ -7,47 +7,34 @@ import Footer from "./components/Footer/Footer";
 import CharactersList from "./components/Characters/CharactersList";
 
 // import './App.css';
-import { getUrlDetails } from "./config/config";
+// import { getUrlDetails } from "./config/config";
 
-const { baseUrl, timeStamp, publicKey, hash } = getUrlDetails();
+// const { baseUrl, timeStamp, publicKey, hash } = getUrlDetails();
 export default class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      characters: []
-    };
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     characters: []
+  //   };
+  // }
 
-  async componentDidMount() {
-    let characterData = await fetch(
-      `${baseUrl}/v1/public/characters?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
-    );
-    characterData = await characterData.json();
-    console.log(characterData);
-    const results = characterData.data.results;
-    console.log(results);
-    this.setState({ characters: results });
-  }
+  // async componentDidMount() {
+  //   let characterData = await fetch(
+  //     `${baseUrl}/v1/public/characters?offset=80&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
+  //   );
+  //   characterData = await characterData.json();
+  //   console.log(characterData);
+  //   const results = characterData.data.results;
+  //   console.log(results);
+  //   this.setState({ characters: results });
+  // }
   render() {
-    if (this.state.characters.length === 0) {
-    }
-    // let CharactersListComponent = (
-    //   <CharactersList characters={this.state.characters} />
-    // );
     return (
       <Router>
-        <Navbar />
+        <Navbar location={this.props.location} />
 
-        <Route
-          exact
-          path="/"
-          render={() => <Dashboard characters={this.state.characters} />}
-        />
-        <Route
-          exact
-          path="/characters"
-          render={() => <CharactersList characters={this.state.characters} />}
-        />
+        <Route exact path="/" component={Dashboard} />
+        <Route exact path="/characters" component={CharactersList} />
 
         <Footer />
       </Router>

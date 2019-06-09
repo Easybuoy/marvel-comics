@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="page-footer font-small indigo darken-3 mt-3">
-      <div className="container">
+    <footer className="page-footer font-small indigo darken-3 mt-3 ">
+      {/* <div className="container">
         <div className="row">
           <div className="col-md-12 py-5">
             <div className="mb-5 flex-center">
@@ -43,7 +43,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="footer-copyright text-center py-3">
         © 2018 Copyright:
