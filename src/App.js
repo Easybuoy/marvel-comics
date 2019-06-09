@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import Dashboard from "./components/Dashboard/Dashboard";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import CharactersList from "./components/Characters/CharactersList";
@@ -28,14 +31,26 @@ export default class App extends Component {
   render() {
     if (this.state.characters.length === 0) {
     }
+    // let CharactersListComponent = (
+    //   <CharactersList characters={this.state.characters} />
+    // );
     return (
-      <div className="App">
+      <Router>
         <Navbar />
-        <h1>Marvel Comics</h1>
 
-        <CharactersList characters={this.state.characters} />
+        <Route
+          exact
+          path="/"
+          render={() => <Dashboard characters={this.state.characters} />}
+        />
+        <Route
+          exact
+          path="/characters"
+          render={() => <CharactersList characters={this.state.characters} />}
+        />
+
         <Footer />
-      </div>
+      </Router>
     );
   }
 }
