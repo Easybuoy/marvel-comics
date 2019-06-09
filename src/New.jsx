@@ -11,16 +11,16 @@ export default class New extends Component {
     };
   }
   async componentDidMount() {
-    let me = await fetch(
-      `${baseUrl}/v1/public/characters?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
-    );
-    const data = await me.json();
-    const results = data.data.results;
-    console.log(results);
-    let imgUrl = `${results[0].thumbnail.path}/detail.${
-      results[0].thumbnail.extension
-    }`;
-    this.setState({ imgUrl });
+    // let me = await fetch(
+    //   `${baseUrl}/v1/public/characters?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
+    // );
+    // const data = await me.json();
+    // const results = data.data.results;
+    // console.log(results);
+    // let imgUrl = `${results[0].thumbnail.path}/detail.${
+    //   results[0].thumbnail.extension
+    // }`;
+    // this.setState({ imgUrl });
     //   .then(res => res.json())
     //   .then(data => console.log(data))
     //   .catch(err => console.log(err));
@@ -28,7 +28,10 @@ export default class New extends Component {
   render() {
     return (
       <div>
-        <img src={this.state.imgUrl} alt="a" />
+        
+
+        <h1>Marvel Comics</h1>
+        {/* <img src={this.state.imgUrl} alt="a" /> */}
       </div>
     );
   }
