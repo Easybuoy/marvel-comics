@@ -71,3 +71,6 @@ typings/
 
 # production
 /build
+
+# package manager
+package-lock.json
