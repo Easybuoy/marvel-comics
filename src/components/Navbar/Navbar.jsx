@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
     <div>
       <nav className="mb-1 navbar navbar-expand-lg navbar-dark indigo lighten-1">
-        <a className="navbar-brand" href="##">
+        <Link className="navbar-brand" to="/">
           Marvel Comics
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -24,20 +25,20 @@ export default function Navbar() {
         >
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="##">
+              <Link className="nav-link" to="/">
                 Home
                 <span className="sr-only">(current)</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="##">
+              <Link className="nav-link" to="characters">
                 Characters
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="##">
+              <Link className="nav-link" to="comics">
                 Comics
-              </a>
+              </Link>
             </li>
           </ul>
           <ul className="navbar-nav ml-auto nav-flex-icons">

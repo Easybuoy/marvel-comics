@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const getUrlDetails = () => {
-  let baseUrl = "http://gateway.marvel.com";
+  let baseUrl = "https://gateway.marvel.com";
   let timeStamp = new Date().getTime();
   let privateKey = process.env.REACT_APP_PRIVATE_KEY;
   let publicKey = process.env.REACT_APP_PUBLIC_KEY;
