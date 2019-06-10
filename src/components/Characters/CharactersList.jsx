@@ -12,13 +12,15 @@ export default class CharactersList extends Component {
   constructor() {
     super();
     this.state = {
-      characters: []
+      characters: [],
+      limit: 0,
+      offset: 0
     };
   }
 
   async componentDidMount() {
     let characterData = await fetch(
-      `${baseUrl}/v1/public/characters?offset=80&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
+      `${baseUrl}/v1/public/characters?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
     );
     characterData = await characterData.json();
     // console.log(characterData);
@@ -37,9 +39,15 @@ export default class CharactersList extends Component {
     }
     return (
       <>
-        <div class="d-flex flex-row-reverse md-form active-purple-2 mb-3 mr-3">
-          <input type="text" placeholder="Search" aria-label="Search" />
+        <div className="input-group md-form form-sm form-1 pl-5 pr-5">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search"
+            aria-label="Search"
+          />
         </div>
+        <div className="line-loader" />
         <h1 className="text-center">Characters</h1>
         <div className="card-group mb-5">
           {this.state.characters.map(character => {
