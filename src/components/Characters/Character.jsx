@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { trimWord } from "../../utils/utils";
+import { trimWord, formImage } from "../../utils/utils";
 
 export default function Character({ character, history }) {
   const { name, thumbnail } = character;
 
-  const imageUrl = `${thumbnail.path}.${thumbnail.extension}`;
+  const imageUrl = formImage(thumbnail.path, "", thumbnail.extension);
   const link = `/characters/${character.id}`;
 
   return (
