@@ -47,7 +47,7 @@ export default class CharactersList extends Component {
             aria-label="Search"
           />
         </div>
-        <div className="line-loader" />
+
         <h1 className="text-center">Characters</h1>
         <div className="card-group mb-5">
           {this.state.characters.map(character => {

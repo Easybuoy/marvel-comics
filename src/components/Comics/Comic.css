@@ -1,0 +1,10 @@
+.comic-card {
+  transition: all 0.9s ease-in-out;
+}
+
+.comic-card:hover {
+  background-color: #283693;
+  color: #ffffff;
+  cursor: pointer;
+  transform: scale(1.02);
+}

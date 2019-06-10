@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Triple } from "react-preloading-component";
 
+import ComicsList from "../Comics/ComicsList";
 import { trimWord } from "../../utils/utils";
 import { getUrlDetails } from "../../config/config";
 
 const { baseUrl, timeStamp, publicKey, hash } = getUrlDetails();
-console.log(baseUrl);
+
 export default function CharacterDetail(props) {
   const [character, setCharacter] = useState([]);
 
@@ -32,36 +33,29 @@ export default function CharacterDetail(props) {
 
   let imageUrl = `${character.thumbnail.path}.${character.thumbnail.extension}`;
 
-  console.log(character);
-  console.log(imageUrl);
-
   return (
-    // <div
-    //   style={{
-    //     backgroundImage: imageStyle,
-    //     height: "100vh",
-    //     backgroundRepeat: "no-repeat",
-    //     backgroundSize: "cover",
-    //     backgroundPosition: "center"
-    //   }}
-    // > </div>
-    // <div class="card">
-    //   <div class="card-body">
-    //     <img
-    //       src="http://i.annihil.us/u/prod/marvel/i/mg/b/03/52740e4619f54.jpg"
-    //       style={{ width: "100%" }}
-    //       alt="a"
-    //     />
-    //     This is some text within a panel body.
-    //   </div>
-    // </div>
-    <div className="mb-5">
+    <div className="col-lg-12 col-md-12 col-sm-12 text-center">
       <div className="card">
-        <div className="card-body" style={{ flexWrap: "wrap" }}>
-          <div
-            className="card-img"
-            style={{ width: "100%", textAlign: "center" }}
-          >
+        <div
+          className="card-body"
+          style={{
+            flexWrap: "wrap",
+            backgroundColor: "#202a76",
+            color: "#ffffff"
+          }}
+        >
+          <div className="card-img" style={{ textAlign: "center" }}>
+            <p
+              className="text-center mt-3"
+              style={{
+                width: "100%",
+                fontSize: "1.5rem",
+
+                fontWeight: "bolder"
+              }}
+            >
+              {trimWord(character.name, 0, "Name")}
+            </p>
             <img
               src={imageUrl}
               style={{
@@ -70,7 +64,7 @@ export default function CharacterDetail(props) {
                 margin: "0 auto",
                 borderRadius: "50%"
               }}
-              alt="a"
+              alt={character.name}
             />
           </div>
 
@@ -83,7 +77,8 @@ export default function CharacterDetail(props) {
         </div>
       </div>
 
-      <h1>Comics</h1>
+      <h1 className="text-center mt-5 mb-5">Character Comics</h1>
+      <ComicsList characterId={character.id} />
     </div>
   );
 }

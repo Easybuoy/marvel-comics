@@ -10,4 +10,12 @@ const trimWord = (string, number, type = "description") => {
   return `${string.substring(0, number)}...`;
 };
 
-export { trimWord };
+const formImage = (path, variant, extension) => {
+  if (!variant) {
+    return `${path}.${extension}`;
+  }
+
+  return `${path}/variant.${extension}`;
+};
+
+export { trimWord, formImage };
