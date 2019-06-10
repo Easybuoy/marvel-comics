@@ -5,6 +5,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import CharactersList from "./components/Characters/CharactersList";
+import CharacterDetail from "./components/Characters/CharacterDetail";
 
 // import './App.css';
 // import { getUrlDetails } from "./config/config";
@@ -34,6 +35,7 @@ export default class App extends Component {
         <Navbar location={this.props.location} />
 
         <Route exact path="/" component={Dashboard} />
+        <Route path="/characters/:character_id" component={CharacterDetail} />
         <Route exact path="/characters" component={CharactersList} />
 
         <Footer />

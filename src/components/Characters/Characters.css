@@ -1,10 +1,66 @@
 .preloader {
-  width: 500px;
+  margin: 5rem 0;
+  /* width: 500px;
   height: 50vh;
   margin: 0 auto;
   position: absolute;
   left: 50%;
   top: 50%;
   margin-left: -250px;
-  margin-top: -250px;
+  margin-top: -250px; */
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-title {
+  font-family: "Concert One", cursive;
+  font-size: 1rem;
+  font-weight: bolder;
+}
+
+.view-detail {
+  font-size: 0.7rem;
+}
+
+.line-loader {
+  height: 4px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #ddd;
+}
+.line-loader:before {
+  display: block;
+  position: absolute;
+  content: "";
+  left: -200px;
+  width: 200px;
+  height: 4px;
+  background-color: #283693;
+  animation: loading 2s linear infinite;
+}
+
+@keyframes loading {
+  from {
+    left: -200px;
+    width: 30%;
+  }
+  50% {
+    width: 30%;
+  }
+  70% {
+    width: 70%;
+  }
+  80% {
+    left: 50%;
+  }
+  95% {
+    left: 120%;
+  }
+  to {
+    left: 100%;
+  }
 }

@@ -1,17 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function Characters({ character }) {
-  const { name, thumbnail, description } = character;
-  // console.log(character);
-  let imageUrl = `${thumbnail.path}/detail.${thumbnail.extension}`;
+import { trimWord } from "../../utils/utils";
 
-  const trimWord = string => {
-    if (!string) {
-      return "No Description available for this character.";
-    }
+export default function Character({ character, history }) {
+  const { name, thumbnail } = character;
 
-    return `${string.substring(0, 40)}...`;
-  };
+  const imageUrl = `${thumbnail.path}.${thumbnail.extension}`;
+  const link = `/characters/${character.id}`;
+
   return (
     <div className="col-lg-3 col-md-4 col-sm-12 mb-4">
       <div className="card ">
@@ -20,7 +17,7 @@ export default function Characters({ character }) {
             className="card-img-top"
             src={imageUrl}
             alt={name}
-            style={{ height: "300px" }}
+            style={{ height: "250px" }}
           />
           <a href="#!">
             <div className="mask rgba-white-slight" />
@@ -28,13 +25,14 @@ export default function Characters({ character }) {
         </div>
 
         <div className="card-body">
-          <h4 className="card-title">{name}</h4>
+          <h4 className="card-title">{trimWord(name, 20, "Name")}</h4>
 
-          <p className="card-text">{trimWord(description)}</p>
-
-          <a href="##" className="btn btn-outline-secondary waves-effect">
-            More
-          </a>
+          <Link
+            to={link}
+            className="btn btn-outline-secondary waves-effect view-detail"
+          >
+            View
+          </Link>
         </div>
       </div>
     </div>

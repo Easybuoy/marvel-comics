@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="page-footer font-small indigo darken-3 mt-3 ">
+    <footer className="page-footer font-small indigo darken-3 mt-3 fixed-bottom">
       {/* <div className="container">
         <div className="row">
           <div className="col-md-12 py-5">
@@ -46,11 +46,8 @@ export default function Footer() {
       </div> */}
 
       <div className="footer-copyright text-center py-3">
-        © 2018 Copyright:
-        <a href="https://mdbootstrap.com/education/bootstrap/">
-          {" "}
-          MDBootstrap.com
-        </a>
+        © {new Date().getFullYear()}
+        <a href="https://https://www.marvel.com/"> MARVEL</a>
       </div>
     </footer>
   );
