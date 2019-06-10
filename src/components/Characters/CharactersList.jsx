@@ -3,7 +3,7 @@ import { Triple } from "react-preloading-component";
 import "./Characters.css";
 
 import Character from "./Character";
-
+import Search from "../Common/Search";
 import { getUrlDetails } from "../../config/config";
 
 const { baseUrl, timeStamp, publicKey, hash } = getUrlDetails();
@@ -39,14 +39,7 @@ export default class CharactersList extends Component {
     }
     return (
       <>
-        <div className="input-group md-form form-sm form-1 pl-5 pr-5">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search"
-            aria-label="Search"
-          />
-        </div>
+        <Search />
 
         <h1 className="text-center">Characters</h1>
         <div className="card-group mb-5">
