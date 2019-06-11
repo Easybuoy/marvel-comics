@@ -7,6 +7,8 @@ import Footer from "./components/Footer/Footer";
 import CharactersList from "./components/Characters/CharactersList";
 import CharacterDetail from "./components/Characters/CharacterDetail";
 import ComicList from "./components/Comics/ComicsList";
+import Profile from "./components/Profile/Profile";
+
 export default function App(props) {
   return (
     <Router>
@@ -16,6 +18,7 @@ export default function App(props) {
       <Route path="/characters/:character_id" component={CharacterDetail} />
       <Route exact path="/characters" component={CharactersList} />
       <Route exact path="/comics" component={ComicList} />
+      <Route exact path="/profile" component={Profile} />
 
       <Footer />
     </Router>

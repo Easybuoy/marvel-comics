@@ -33,6 +33,7 @@ Progressive Web Application that displays information about Marvel Comics and Ch
 <h3>Prerequisites</h3>
 You need Nodejs Installed to be able to run this project on your machine.
 
+<br >
 <h3>Installing<h3>
 <ul><li>Clone Repository</li></ul>
 <pre><code>git clone https://github.com/Easybuoy/marvel-comics</code> </pre>
