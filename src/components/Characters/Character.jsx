@@ -15,12 +15,7 @@ export default function Character({ character, history }) {
       <Card transform="true">
         <div className="card ">
           <div className="view overlay">
-            <img
-              className="card-img-top"
-              src={imageUrl}
-              alt={name}
-              style={{ height: "250px" }}
-            />
+            <img className="card-img-top" src={imageUrl} alt={name} />
             <Link to={link}>
               <div className="mask rgba-white-slight" />
             </Link>

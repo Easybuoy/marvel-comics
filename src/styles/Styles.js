@@ -35,7 +35,7 @@ const Button = styled.button`
   padding-top: 0.7rem;
   padding-bottom: 0.7rem;
   transition: all 0.5s ease-in-out;
-
+  outline: none;
   &:hover {
     background-color: #5c6bc0;
     color: white;
@@ -106,6 +106,10 @@ const Card = styled.div`
 
       cursor: ${props => (props.hover ? "pointer" : "default")};
       transform: ${props => (props.transform ? "scale(1.02)" : "none")};
+    }
+
+    img {
+      height: 250px;
     }
   }
   .card-body {
