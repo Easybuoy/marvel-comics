@@ -135,6 +135,7 @@ const Card = styled.div`
 `;
 
 const PreLoader = styled.div`
+  text-align: center;
   margin: 5rem 0;
 `;
 
@@ -160,7 +161,8 @@ const Search = styled.div`
 
   form {
     width: 100%;
-
+    display: flex;
+    justify-content: center;
     input {
       border-bottom: 1px solid #ced4da;
       border-top: none;

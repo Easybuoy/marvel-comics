@@ -18,7 +18,8 @@ export default class CharactersList extends Component {
       offset: 0,
       error: "",
       searchValue: "",
-      searchData: []
+      searchData: [],
+      searchError: ""
     };
   }
 
@@ -44,13 +45,13 @@ export default class CharactersList extends Component {
     this.setState({ searchValue });
 
     if (searchValue.length === 0) {
-      this.setState({ searchData: [] });
+      this.setState({ searchData: [], searchError: "" });
     }
   };
 
   handleSearch = async e => {
     e.preventDefault();
-
+    console.log("asadfjkfjh");
     this.setState({ searchData: [] });
     if (this.state.searchValue.length > 0) {
       let characterData = await fetch(
@@ -67,16 +68,36 @@ export default class CharactersList extends Component {
 
       characterData = await characterData.json();
       const results = characterData.data.results;
-
-      this.setState({ searchData: results, searchValue: "" });
+      console.log(results);
+      if (results.length === 0) {
+        return this.setState({
+          searchError: "No Match Found For Search Criteria"
+        });
+      }
+      this.setState({ searchData: results, searchValue: "", searchError: "" });
     }
   };
 
   render() {
+    let SearchComponent = (
+      <Search
+        handleSearch={this.handleSearch}
+        onSearchChange={this.onSearchChange}
+      />
+    );
+
     if (this.state.error) {
       return <div>{this.state.error}</div>;
     }
 
+    if (this.state.searchError) {
+      return (
+        <>
+          {SearchComponent}
+          <PreLoader>{this.state.searchError}</PreLoader>;
+        </>
+      );
+    }
     if (this.state.characters.length === 0) {
       return (
         <PreLoader>
@@ -84,12 +105,7 @@ export default class CharactersList extends Component {
         </PreLoader>
       );
     }
-    let SearchComponent = (
-      <Search
-        handleSearch={this.handleSearch}
-        onSearchChange={this.onSearchChange}
-      />
-    );
+
     let mapData = this.state.characters;
     if (this.state.searchData.length > 0) {
       mapData = this.state.searchData;
