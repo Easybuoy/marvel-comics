@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 function Navbar(props) {
   const { pathname } = props.location;
@@ -81,3 +82,7 @@ function Navbar(props) {
 }
 
 export default withRouter(Navbar);
+
+Navbar.propTypes = {
+  location: PropTypes.object.isRequired
+};
