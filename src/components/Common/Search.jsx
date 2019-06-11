@@ -1,14 +1,26 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default function Search() {
+import { Search as StyledSearch, Button } from "../../styles/Styles";
+
+export default function Search({ handleSearch, onSearchChange }) {
   return (
-    <div className="input-group md-form form-sm form-1 pl-5 pr-5">
-      <input
-        type="text"
-        className="form-control"
-        placeholder="Search"
-        aria-label="Search"
-      />
-    </div>
+    <StyledSearch>
+      <form>
+        <input
+          onChange={onSearchChange}
+          type="text"
+          placeholder="Search"
+          aria-label="Search"
+          required="required"
+        />
+        <Button onClick={handleSearch}>Search</Button>
+      </form>
+    </StyledSearch>
   );
 }
+
+Search.propTypes = {
+  handleSearch: PropTypes.func.isRequired,
+  onSearchChange: PropTypes.func.isRequired
+};

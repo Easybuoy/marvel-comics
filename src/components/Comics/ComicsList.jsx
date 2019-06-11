@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Triple } from "react-preloading-component";
 import PropTypes from "prop-types";
 
-import { Button, LineLoader, CardGroup } from "../../styles/Styles";
+import { Button, LineLoader, CardGroup, PreLoader } from "../../styles/Styles";
 
 import Comic from "./Comic";
 import { getUrlDetails } from "../../config/config";
@@ -16,7 +16,10 @@ export default class ComicsList extends Component {
     this.state = {
       comics: [],
       characterId: 0,
-      limit: 0
+      limit: 0,
+      searchValue: "",
+      searchData: [],
+      searchError: ""
     };
   }
 
@@ -65,6 +68,44 @@ export default class ComicsList extends Component {
     });
   };
 
+  onSearchChange = e => {
+    const searchValue = e.target.value;
+    this.setState({ searchValue });
+
+    if (searchValue.length === 0) {
+      this.setState({ searchData: [], searchError: "" });
+    }
+  };
+
+  handleSearch = async e => {
+    e.preventDefault();
+
+    this.setState({ searchData: [] });
+    if (this.state.searchValue.length > 0) {
+      let characterData = await fetch(
+        `${baseUrl}/v1/public/characters?name=${
+          this.state.searchValue
+        }&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
+      );
+
+      if (characterData.status !== 200) {
+        return this.setState({
+          error: `${characterData.statusText}, Please Try Again`
+        });
+      }
+
+      characterData = await characterData.json();
+      const results = characterData.data.results;
+
+      if (results.length === 0) {
+        return this.setState({
+          searchError: "No Match Found For Search Criteria"
+        });
+      }
+      this.setState({ searchData: results, searchValue: "", searchError: "" });
+    }
+  };
+
   render() {
     const { comics, characterId } = this.state;
 
@@ -109,13 +150,33 @@ export default class ComicsList extends Component {
         </div>
       );
     }
+    let SearchComponent = (
+      <Search
+        handleSearch={this.handleSearch}
+        onSearchChange={this.onSearchChange}
+      />
+    );
+
+    if (this.state.searchError) {
+      return (
+        <>
+          {SearchComponent}
+          <PreLoader>{this.state.searchError}</PreLoader>;
+        </>
+      );
+    }
+
+    let mapData = this.state.comics;
+    if (this.state.searchData.length > 0) {
+      mapData = this.state.searchData;
+    }
 
     return (
       <>
-        <Search />
+        {SearchComponent}
         <h2 className="text-center mb-3">Comics</h2>
         <CardGroup>
-          {comics.map(comic => {
+          {mapData.map(comic => {
             return <Comic key={comic.id} comic={comic} />;
           })}
         </CardGroup>

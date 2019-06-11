@@ -12,9 +12,6 @@ const Button = styled.button`
   -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
     -webkit-box-shadow 0.15s ease-in-out;
   margin: 0.375rem;
   border: 0;
@@ -24,18 +21,17 @@ const Button = styled.button`
   text-transform: uppercase;
   white-space: normal;
   word-wrap: break-word;
-  color: inherit;
 
   border: 2px solid #cc0000;
   background-color: transparent;
   color: #cc0000;
 
   font-size: 0.7rem;
-
+  outline: none;
   padding-top: 0.7rem;
   padding-bottom: 0.7rem;
   transition: all 0.5s ease-in-out;
-  outline: none;
+
   &:hover {
     background-color: #cc0000;
     color: white;
@@ -139,6 +135,7 @@ const Card = styled.div`
 `;
 
 const PreLoader = styled.div`
+  text-align: center;
   margin: 5rem 0;
 `;
 
@@ -156,4 +153,33 @@ const H4 = styled.h4`
   color: #cc0000;
 `;
 
-export { Button, LineLoader, CardGroup, Card, PreLoader, H4, H3, H2 };
+const Search = styled.div`
+  display: flex;
+  margin: 1.5rem 0;
+  padding: 0 2rem;
+  justify-content: center;
+
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    input {
+      border-bottom: 1px solid #ced4da;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      outline: none;
+      border-radius: 0;
+      width: 90%;
+      padding: 0.5rem 1rem;
+
+      &:focus {
+        outline: none;
+        border-bottom: 2px solid #ff3446;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+`;
+
+export { Button, LineLoader, CardGroup, Card, PreLoader, H4, H3, H2, Search };
