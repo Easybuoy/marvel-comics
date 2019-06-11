@@ -16,7 +16,9 @@ export default class CharactersList extends Component {
       characters: [],
       limit: 0,
       offset: 0,
-      error: ""
+      error: "",
+      searchValue: "",
+      searchData: []
     };
   }
 
@@ -37,6 +39,39 @@ export default class CharactersList extends Component {
     this.setState({ characters: results });
   }
 
+  onSearchChange = e => {
+    const searchValue = e.target.value;
+    this.setState({ searchValue });
+
+    if (searchValue.length === 0) {
+      this.setState({ searchData: [] });
+    }
+  };
+
+  handleSearch = async e => {
+    e.preventDefault();
+
+    this.setState({ searchData: [] });
+    if (this.state.searchValue.length > 0) {
+      let characterData = await fetch(
+        `${baseUrl}/v1/public/characters?name=${
+          this.state.searchValue
+        }&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
+      );
+
+      if (characterData.status !== 200) {
+        return this.setState({
+          error: `${characterData.statusText}, Please Try Again`
+        });
+      }
+
+      characterData = await characterData.json();
+      const results = characterData.data.results;
+
+      this.setState({ searchData: results, searchValue: "" });
+    }
+  };
+
   render() {
     if (this.state.error) {
       return <div>{this.state.error}</div>;
@@ -49,13 +84,23 @@ export default class CharactersList extends Component {
         </PreLoader>
       );
     }
+    let SearchComponent = (
+      <Search
+        handleSearch={this.handleSearch}
+        onSearchChange={this.onSearchChange}
+      />
+    );
+    let mapData = this.state.characters;
+    if (this.state.searchData.length > 0) {
+      mapData = this.state.searchData;
+    }
     return (
       <>
-        <Search />
+        {SearchComponent}
 
         <H2>Characters</H2>
         <CardGroup>
-          {this.state.characters.map(character => {
+          {mapData.map(character => {
             return <Character key={character.id} character={character} />;
           })}
         </CardGroup>
