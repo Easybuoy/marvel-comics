@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Triple } from "react-preloading-component";
+import PropTypes from "prop-types";
 
 import Character from "./Character";
 import Search from "../Common/Search";
@@ -32,7 +33,7 @@ export default class CharactersList extends Component {
 
     characterData = await characterData.json();
     const results = characterData.data.results;
-    // console.log(results);
+
     this.setState({ characters: results });
   }
 
@@ -62,3 +63,7 @@ export default class CharactersList extends Component {
     );
   }
 }
+
+CharactersList.propTypes = {
+  characters: PropTypes.number
+};

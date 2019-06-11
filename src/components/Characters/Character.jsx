@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import { Button, Card } from "../../styles/Styles";
 import { trimWord, formImage } from "../../utils/utils";
 
-export default function Character({ character, history }) {
+export default function Character({ character }) {
   const { name, thumbnail } = character;
 
   const imageUrl = formImage(thumbnail.path, "", thumbnail.extension);
@@ -34,3 +35,7 @@ export default function Character({ character, history }) {
     </div>
   );
 }
+
+Character.propTypes = {
+  character: PropTypes.object.isRequired
+};

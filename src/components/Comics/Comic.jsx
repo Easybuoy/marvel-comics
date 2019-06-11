@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import { Card } from "../../styles/Styles";
 import { formImage, trimWord } from "../../utils/utils";
@@ -29,3 +30,7 @@ export default function Comic({ comic }) {
     </div>
   );
 }
+
+Comic.propTypes = {
+  comic: PropTypes.object.isRequired
+};

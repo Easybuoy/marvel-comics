@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Triple } from "react-preloading-component";
+import PropTypes from "prop-types";
 
 import { Button, LineLoader, CardGroup } from "../../styles/Styles";
 
@@ -122,3 +123,7 @@ export default class ComicsList extends Component {
     );
   }
 }
+
+ComicsList.propTypes = {
+  characterId: PropTypes.number
+};
