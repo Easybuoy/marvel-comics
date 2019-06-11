@@ -66,7 +66,7 @@ function Navbar(props) {
             <li className="nav-item avatar">
               <a className="nav-link p-0" href="##">
                 <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+                  src="https://ca.slack-edge.com/T02R3LKBA-UECH3PZRD-d2b634fec565-72"
                   className="rounded-circle z-depth-0"
                   alt="avatar"
                   height="35"

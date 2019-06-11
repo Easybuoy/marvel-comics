@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Triple } from "react-preloading-component";
 
-import "./Comic.css";
+import { Button, LineLoader } from "../../styles/Styles";
 
 import Comic from "./Comic";
 import { getUrlDetails } from "../../config/config";
@@ -85,12 +85,7 @@ export default class ComicsList extends Component {
                 <Fragment key={`${comic.id}${i}`}>
                   <Comic comic={comic} />
                   <div className="mb-5" style={{ margin: "0 auto" }}>
-                    <button
-                      className="btn btn-secondary"
-                      onClick={this.handleMoreComics}
-                    >
-                      Load More
-                    </button>
+                    <Button onClick={this.handleMoreComics}>Load More</Button>
                   </div>
                 </Fragment>
               );
@@ -106,7 +101,7 @@ export default class ComicsList extends Component {
       return (
         <div className="mt-5 mb-5">
           {this.props.characterId ? (
-            <div className="line-loader pt-5 pb-5" />
+            <LineLoader />
           ) : (
             <Triple color="#283693" size={80} />
           )}
@@ -117,6 +112,7 @@ export default class ComicsList extends Component {
     return (
       <>
         <Search />
+        <h2 className="text-center mb-3">Comics</h2>
         <div className="card-group mb-5">
           {comics.map(comic => {
             return <Comic key={comic.id} comic={comic} />;

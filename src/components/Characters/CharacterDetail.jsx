@@ -4,6 +4,7 @@ import { Triple } from "react-preloading-component";
 import ComicsList from "../Comics/ComicsList";
 import { trimWord } from "../../utils/utils";
 import { getUrlDetails } from "../../config/config";
+import { PreLoader } from "../../styles/Styles";
 
 const { baseUrl, timeStamp, publicKey, hash } = getUrlDetails();
 
@@ -25,9 +26,9 @@ export default function CharacterDetail(props) {
     fetDetail();
 
     return (
-      <div className="preloader">
+      <PreLoader>
         <Triple color="#283693" size={80} />
-      </div>
+      </PreLoader>
     );
   }
 
