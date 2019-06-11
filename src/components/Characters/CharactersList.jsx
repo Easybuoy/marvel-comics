@@ -51,7 +51,7 @@ export default class CharactersList extends Component {
 
   handleSearch = async e => {
     e.preventDefault();
-    console.log("asadfjkfjh");
+
     this.setState({ searchData: [] });
     if (this.state.searchValue.length > 0) {
       let characterData = await fetch(
@@ -68,7 +68,7 @@ export default class CharactersList extends Component {
 
       characterData = await characterData.json();
       const results = characterData.data.results;
-      console.log(results);
+
       if (results.length === 0) {
         return this.setState({
           searchError: "No Match Found For Search Criteria"

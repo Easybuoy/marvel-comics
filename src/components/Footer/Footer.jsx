@@ -46,7 +46,7 @@ export default function Footer() {
       </div> */}
 
       <div className="footer-copyright text-center py-3">
-        © {new Date().getFullYear()}
+        Data provided by Marvel. © {new Date().getFullYear()}
         <a href="https://https://www.marvel.com/" className="font-weight-bold">
           {" "}
           MARVEL
