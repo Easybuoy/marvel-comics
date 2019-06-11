@@ -26,9 +26,9 @@ const Button = styled.button`
   word-wrap: break-word;
   color: inherit;
 
-  border: 2px solid #5c6bc0;
+  border: 2px solid #cc0000;
   background-color: transparent;
-  color: #5c6bc0;
+  color: #cc0000;
 
   font-size: 0.7rem;
 
@@ -37,7 +37,7 @@ const Button = styled.button`
   transition: all 0.5s ease-in-out;
   outline: none;
   &:hover {
-    background-color: #5c6bc0;
+    background-color: #cc0000;
     color: white;
     outline: none;
   }
@@ -58,7 +58,7 @@ const LineLoader = styled.div`
     left: -200px;
     width: 200px;
     height: 4px;
-    background-color: #283693;
+    background-color: #cc0000;
     animation: loading 2s linear infinite;
   }
 
@@ -101,16 +101,24 @@ const Card = styled.div`
     transition: all 0.5s ease-in-out;
 
     &:hover {
-      background-color: ${props => (props.hover ? "#283693" : "inherit")};
+      background-color: ${props => (props.hover ? "#CC0000" : "inherit")};
       color: ${props => (props.hover ? "#ffffff" : "inherit")};
 
       cursor: ${props => (props.hover ? "pointer" : "default")};
       transform: ${props => (props.transform ? "scale(1.02)" : "none")};
+
+      /* h4 {
+        color: ${props => (props.hover ? "#ffffff" : "inherit")};
+      } */
     }
 
     img {
       height: 250px;
     }
+
+    /* h4 {
+      color: #cc0000;
+    } */
   }
   .card-body {
     display: flex;
@@ -120,7 +128,7 @@ const Card = styled.div`
   }
 
   .card-body.characterDetail {
-    background-color: #202a76;
+    background-color: #ff4444;
     color: #ffffff;
   }
   .card-title {
@@ -144,4 +152,8 @@ const H3 = styled.h3`
   font-family: "Concert One", cursive;
 `;
 
-export { Button, LineLoader, CardGroup, Card, PreLoader, H3, H2 };
+const H4 = styled.h4`
+  color: #cc0000;
+`;
+
+export { Button, LineLoader, CardGroup, Card, PreLoader, H4, H3, H2 };

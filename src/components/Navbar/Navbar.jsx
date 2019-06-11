@@ -25,8 +25,8 @@ function Navbar(props) {
   }
   return (
     <div>
-      <nav className="mb-1 navbar navbar-expand-lg navbar-dark indigo lighten-1">
-        <Link className="navbar-brand" to="/">
+      <nav className="mb-1 navbar navbar-expand-lg navbar-dark danger-color lighten-1">
+        <Link className="navbar-brand font-weight-bold" to="/">
           Marvel Comics
         </Link>
         <button

@@ -44,7 +44,7 @@ export default class CharactersList extends Component {
     if (this.state.characters.length === 0) {
       return (
         <PreLoader>
-          <Triple color="#283693" size={80} />
+          <Triple color="#CC0000" size={80} />
         </PreLoader>
       );
     }

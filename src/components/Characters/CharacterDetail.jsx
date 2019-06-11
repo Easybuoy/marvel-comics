@@ -27,7 +27,7 @@ export default function CharacterDetail(props) {
 
     return (
       <PreLoader>
-        <Triple color="#283693" size={80} />
+        <Triple color="#CC0000" size={80} />
       </PreLoader>
     );
   }
