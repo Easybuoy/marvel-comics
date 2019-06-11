@@ -25,7 +25,7 @@ export default class CharactersList extends Component {
 
   async componentDidMount() {
     let characterData = await fetch(
-      `${baseUrl}/v1/public/characters?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
+      `${baseUrl}/v1/public/characters?limit=100&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
     );
 
     if (characterData.status !== 200) {

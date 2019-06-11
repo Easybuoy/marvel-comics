@@ -27,7 +27,7 @@ export default class ComicsList extends Component {
     const { characterId } = this.props;
     let limit = 0;
     let data = await fetch(
-      `${baseUrl}/v1/public/comics?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
+      `${baseUrl}/v1/public/comics?limit=100&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
     );
 
     if (characterId) {
