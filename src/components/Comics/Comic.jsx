@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+import { Card } from "../../styles/Styles";
 import { formImage, trimWord } from "../../utils/utils";
 
 export default function Comic({ comic }) {
@@ -9,27 +11,23 @@ export default function Comic({ comic }) {
   let imageUrl = formImage(thumbnail.path, "", thumbnail.extension);
   return (
     <div className="col-lg-3 col-md-4 col-sm-12 mb-4 ">
-      <Link to={`//${url}`} target="_blank">
-        {/* me
-      </Link> */}
-        <div className="card comic-card">
+      <Card hover transform="true">
+        <div className="card">
           <div className="view overlay">
-            <img
-              className="card-img-top"
-              src={imageUrl}
-              alt={title}
-              style={{ height: "250px" }}
-            />
-            {/* <a href="#!">
+            <img className="card-img-top" src={imageUrl} alt={title} />
+
+            <Link to={`//${url}`} target="_blank">
               <div className="mask rgba-white-slight" />
-            </a> */}
+            </Link>
           </div>
 
           <div className="card-body">
-            <h4 className="card-title">{trimWord(title, 30, "Title")}</h4>
+            <Link to={`//${url}`} target="_blank">
+              <h4 className="card-title">{trimWord(title, 30, "Title")}</h4>
+            </Link>
           </div>
         </div>
-      </Link>
+      </Card>
     </div>
   );
 }
