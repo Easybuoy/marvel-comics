@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="page-footer font-small indigo darken-3 mt-3 fixed-bottom">
+    <footer className="page-footer font-small danger-color-dark darken-3 mt-3 fixed-bottom">
       {/* <div className="container">
         <div className="row">
           <div className="col-md-12 py-5">
@@ -47,7 +47,10 @@ export default function Footer() {
 
       <div className="footer-copyright text-center py-3">
         © {new Date().getFullYear()}
-        <a href="https://https://www.marvel.com/"> MARVEL</a>
+        <a href="https://https://www.marvel.com/" className="font-weight-bold">
+          {" "}
+          MARVEL
+        </a>
       </div>
     </footer>
   );

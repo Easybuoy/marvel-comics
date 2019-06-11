@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 function Navbar(props) {
   const { pathname } = props.location;
@@ -25,8 +26,8 @@ function Navbar(props) {
   }
   return (
     <div>
-      <nav className="mb-1 navbar navbar-expand-lg navbar-dark indigo lighten-1">
-        <Link className="navbar-brand" to="/">
+      <nav className="mb-1 navbar navbar-expand-lg navbar-dark danger-color lighten-1">
+        <Link className="navbar-brand font-weight-bold" to="/">
           Marvel Comics
         </Link>
         <button
@@ -81,3 +82,7 @@ function Navbar(props) {
 }
 
 export default withRouter(Navbar);
+
+Navbar.propTypes = {
+  location: PropTypes.object.isRequired
+};
