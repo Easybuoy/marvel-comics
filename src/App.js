@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import CharactersList from "./components/Characters/CharactersList";
 import CharacterDetail from "./components/Characters/CharacterDetail";
-
+import ComicList from "./components/Comics/ComicsList";
 // import './App.css';
 // import { getUrlDetails } from "./config/config";
 
@@ -37,11 +37,10 @@ export default class App extends Component {
         <Route exact path="/" component={Dashboard} />
         <Route path="/characters/:character_id" component={CharacterDetail} />
         <Route exact path="/characters" component={CharactersList} />
+        <Route exact path="/comics" component={ComicList} />
 
         <Footer />
       </Router>
     );
   }
 }
-
-// import New from "./New";

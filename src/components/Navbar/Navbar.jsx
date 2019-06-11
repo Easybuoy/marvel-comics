@@ -52,12 +52,12 @@ function Navbar(props) {
               </Link>
             </li>
             <li className={charactersClassName}>
-              <Link className="nav-link" to="characters">
+              <Link className="nav-link" to="/characters">
                 Characters
               </Link>
             </li>
             <li className={comicsClassName}>
-              <Link className="nav-link" to="comics">
+              <Link className="nav-link" to="/comics">
                 Comics
               </Link>
             </li>
