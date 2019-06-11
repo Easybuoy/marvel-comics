@@ -12,7 +12,7 @@ export default function Comic({ comic }) {
   return (
     <div className="col-lg-3 col-md-4 col-sm-12 mb-4 ">
       <Link to={`//${url}`} target="_blank">
-        <Card hover>
+        <Card hover transform>
           <div className="card ">
             <div className="view overlay">
               <img

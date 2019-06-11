@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Triple } from "react-preloading-component";
-import "./Characters.css";
 
 import Character from "./Character";
 import Search from "../Common/Search";
 import { getUrlDetails } from "../../config/config";
-import { PreLoader } from "../../styles/Styles";
+import { PreLoader, H2, CardGroup } from "../../styles/Styles";
 
 const { baseUrl, timeStamp, publicKey, hash } = getUrlDetails();
 
@@ -53,12 +52,12 @@ export default class CharactersList extends Component {
       <>
         <Search />
 
-        <h2 className="text-center mb-3">Characters</h2>
-        <div className="card-group mb-5">
+        <H2>Characters</H2>
+        <CardGroup>
           {this.state.characters.map(character => {
             return <Character key={character.id} character={character} />;
           })}
-        </div>
+        </CardGroup>
       </>
     );
   }

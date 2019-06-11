@@ -4,7 +4,7 @@ import { Triple } from "react-preloading-component";
 import ComicsList from "../Comics/ComicsList";
 import { trimWord } from "../../utils/utils";
 import { getUrlDetails } from "../../config/config";
-import { PreLoader } from "../../styles/Styles";
+import { PreLoader, Card, H3, H2 } from "../../styles/Styles";
 
 const { baseUrl, timeStamp, publicKey, hash } = getUrlDetails();
 
@@ -36,49 +36,41 @@ export default function CharacterDetail(props) {
 
   return (
     <div className="col-lg-12 col-md-12 col-sm-12 text-center">
-      <div className="card">
-        <div
-          className="card-body"
-          style={{
-            flexWrap: "wrap",
-            backgroundColor: "#202a76",
-            color: "#ffffff"
-          }}
-        >
-          <div className="card-img" style={{ textAlign: "center" }}>
-            <p
-              className="text-center mt-3"
-              style={{
-                width: "100%",
-                fontSize: "1.5rem",
+      <Card>
+        <div className="card">
+          <div className="card-body characterDetail">
+            <div className="card-img" style={{ textAlign: "center" }}>
+              <p
+                className="text-center mt-3"
+                style={{
+                  width: "100%",
+                  fontSize: "1.5rem",
 
-                fontWeight: "bolder"
-              }}
-            >
-              {trimWord(character.name, 0, "Name")}
-            </p>
-            <img
-              src={imageUrl}
-              style={{
-                width: "300px",
-                height: "300px",
-                margin: "0 auto",
-                borderRadius: "50%"
-              }}
-              alt={character.name}
-            />
+                  fontWeight: "bolder"
+                }}
+              >
+                {trimWord(character.name, 0, "Name")}
+              </p>
+              <img
+                src={imageUrl}
+                style={{
+                  width: "300px",
+                  height: "300px",
+                  margin: "0 auto",
+                  borderRadius: "50%"
+                }}
+                alt={character.name}
+              />
+            </div>
+
+            <H3 className="text-center mt-3">
+              {trimWord(character.description, 0, "Description")}
+            </H3>
           </div>
-
-          <p
-            className="text-center mt-3"
-            style={{ width: "100%", fontSize: "1.2rem" }}
-          >
-            {trimWord(character.description, 0, "Description")}
-          </p>
         </div>
-      </div>
+      </Card>
 
-      <h1 className="text-center mt-5 mb-5">Character Comics</h1>
+      <H2>Character Comics</H2>
       <ComicsList characterId={character.id} />
     </div>
   );

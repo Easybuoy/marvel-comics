@@ -85,7 +85,18 @@ const LineLoader = styled.div`
   }
 `;
 
+const CardGroup = styled.div`
+  display: flex;
+  margin-bottom: 5rem;
+  flex-direction: column;
+
+  @media (min-width: 576px) {
+    flex-flow: row wrap;
+  }
+`;
+
 const Card = styled.div`
+  cursor: pointer;
   .card {
     transition: all 0.5s ease-in-out;
 
@@ -93,14 +104,20 @@ const Card = styled.div`
       background-color: ${props => (props.hover ? "#283693" : "inherit")};
       color: ${props => (props.hover ? "#ffffff" : "inherit")};
 
-      cursor: pointer;
-      transform: scale(1.02);
+      cursor: ${props => (props.hover ? "pointer" : "default")};
+      transform: ${props => (props.transform ? "scale(1.02)" : "none")};
     }
   }
   .card-body {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .card-body.characterDetail {
+    background-color: #202a76;
+    color: #ffffff;
   }
   .card-title {
     font-family: "Concert One", cursive;
@@ -113,4 +130,14 @@ const PreLoader = styled.div`
   margin: 5rem 0;
 `;
 
-export { Button, LineLoader, Card, PreLoader };
+const H2 = styled.h2`
+  margin: 2rem 0;
+  text-align: center;
+`;
+
+const H3 = styled.h3`
+  width: 100%;
+  font-family: "Concert One", cursive;
+`;
+
+export { Button, LineLoader, CardGroup, Card, PreLoader, H3, H2 };

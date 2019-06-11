@@ -12,7 +12,7 @@ export default function Character({ character, history }) {
 
   return (
     <div className="col-lg-3 col-md-4 col-sm-12 mb-4">
-      <Card>
+      <Card transform="true">
         <div className="card ">
           <div className="view overlay">
             <img
@@ -21,9 +21,9 @@ export default function Character({ character, history }) {
               alt={name}
               style={{ height: "250px" }}
             />
-            <a href="#!">
+            <Link to={link}>
               <div className="mask rgba-white-slight" />
-            </a>
+            </Link>
           </div>
 
           <div className="card-body">

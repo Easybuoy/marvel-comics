@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Triple } from "react-preloading-component";
 
-import { Button, LineLoader } from "../../styles/Styles";
+import { Button, LineLoader, CardGroup } from "../../styles/Styles";
 
 import Comic from "./Comic";
 import { getUrlDetails } from "../../config/config";
@@ -113,11 +113,11 @@ export default class ComicsList extends Component {
       <>
         <Search />
         <h2 className="text-center mb-3">Comics</h2>
-        <div className="card-group mb-5">
+        <CardGroup>
           {comics.map(comic => {
             return <Comic key={comic.id} comic={comic} />;
           })}
-        </div>
+        </CardGroup>
       </>
     );
   }
