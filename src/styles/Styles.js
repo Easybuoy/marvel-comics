@@ -174,4 +174,29 @@ const Search = styled.div`
   }
 `;
 
-export { Button, LineLoader, CardGroup, Card, PreLoader, H4, H3, H2, Search };
+const NotFound = styled.div`
+  margin-bottom: 5rem;
+
+  img {
+    width: 100%;
+    height: 70vh;
+  }
+
+  button {
+    display: flex;
+    margin: 0 auto;
+  }
+`;
+
+export {
+  Button,
+  LineLoader,
+  CardGroup,
+  Card,
+  PreLoader,
+  H4,
+  H3,
+  H2,
+  Search,
+  NotFound
+};
