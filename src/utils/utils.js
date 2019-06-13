@@ -22,4 +22,8 @@ const formImage = (path, variant, extension) => {
   return `${path}/variant.${extension}`;
 };
 
-export { trimWord, formImage };
+const reload = () => {
+  return window.location.reload();
+};
+
+export { trimWord, formImage, reload };

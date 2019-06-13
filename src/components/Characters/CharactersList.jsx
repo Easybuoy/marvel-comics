@@ -5,7 +5,8 @@ import PropTypes from "prop-types";
 import Character from "./Character";
 import Search from "../Common/Search";
 import { getUrlDetails } from "../../config/config";
-import { PreLoader, H2, CardGroup } from "../../styles/Styles";
+import { reload } from "../../utils/utils";
+import { PreLoader, H2, CardGroup, Button } from "../../styles/Styles";
 
 const { baseUrl, timeStamp, publicKey, hash } = getUrlDetails();
 
@@ -37,15 +38,15 @@ export default class CharactersList extends Component {
     characterData = await characterData.json();
     const results = characterData.data.results;
 
-    this.setState({ characters: results });
+    this.setState({ characters: results, error: "" });
   }
 
   onSearchChange = e => {
     const searchValue = e.target.value;
-    this.setState({ searchValue });
+    this.setState({ searchValue, error: "" });
 
     if (searchValue.length === 0) {
-      this.setState({ searchData: [], searchError: "" });
+      this.setState({ searchData: [], searchError: "", error: "" });
     }
   };
 
@@ -87,7 +88,12 @@ export default class CharactersList extends Component {
     );
 
     if (this.state.error) {
-      return <div>{this.state.error}</div>;
+      return (
+        <PreLoader>
+          {this.state.error} <br />
+          <Button onClick={reload}>Reload</Button>
+        </PreLoader>
+      );
     }
 
     if (this.state.searchError) {

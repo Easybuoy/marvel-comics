@@ -5,8 +5,9 @@ import PropTypes from "prop-types";
 import { Button, LineLoader, CardGroup, PreLoader } from "../../styles/Styles";
 
 import Comic from "./Comic";
-import { getUrlDetails } from "../../config/config";
 import Search from "../Common/Search";
+import { reload } from "../../utils/utils";
+import { getUrlDetails } from "../../config/config";
 
 const { baseUrl, timeStamp, publicKey, hash } = getUrlDetails();
 
@@ -19,7 +20,8 @@ export default class ComicsList extends Component {
       limit: 0,
       searchValue: "",
       searchData: [],
-      searchError: ""
+      searchError: "",
+      error: ""
     };
   }
 
@@ -36,6 +38,12 @@ export default class ComicsList extends Component {
           .state.limit + 4}&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
       );
       limit = this.state.limit + 4;
+    }
+
+    if (data.status !== 200) {
+      return this.setState({
+        error: `${data.statusText}, Please Try Again`
+      });
     }
 
     data = await data.json();
@@ -63,7 +71,7 @@ export default class ComicsList extends Component {
 
     this.setState({
       comics: newComics,
-
+      error: "",
       limit: this.state.limit + 4
     });
   };
@@ -82,32 +90,47 @@ export default class ComicsList extends Component {
 
     this.setState({ searchData: [] });
     if (this.state.searchValue.length > 0) {
-      let characterData = await fetch(
+      let comicData = await fetch(
         `${baseUrl}/v1/public/characters?name=${
           this.state.searchValue
         }&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
       );
 
-      if (characterData.status !== 200) {
+      if (comicData.status !== 200) {
         return this.setState({
-          error: `${characterData.statusText}, Please Try Again`
+          error: `${comicData.statusText}, Please Try Again`
         });
       }
 
-      characterData = await characterData.json();
-      const results = characterData.data.results;
+      comicData = await comicData.json();
+      const results = comicData.data.results;
 
       if (results.length === 0) {
         return this.setState({
-          searchError: "No Match Found For Search Criteria"
+          searchError: "No Match Found For Search Criteria",
+          error: ""
         });
       }
-      this.setState({ searchData: results, searchValue: "", searchError: "" });
+      this.setState({
+        searchData: results,
+        searchValue: "",
+        searchError: "",
+        error: ""
+      });
     }
   };
 
   render() {
     const { comics, characterId } = this.state;
+
+    if (this.state.error) {
+      return (
+        <PreLoader>
+          {this.state.error} <br />
+          <Button onClick={reload}>Reload</Button>
+        </PreLoader>
+      );
+    }
 
     // If character id is present check if there is a comic for that character.
     if (characterId) {
@@ -120,7 +143,7 @@ export default class ComicsList extends Component {
       }
 
       return (
-        <div className="card-group mb-5">
+        <CardGroup>
           {comics.map((comic, i) => {
             if (comics.length - 1 === i) {
               return (
@@ -135,7 +158,7 @@ export default class ComicsList extends Component {
               return <Comic key={`${comic.id}${i}`} comic={comic} />;
             }
           })}
-        </div>
+        </CardGroup>
       );
     }
 
