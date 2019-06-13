@@ -7,22 +7,33 @@ function Navbar(props) {
   let homeClassName = "nav-item";
   let charactersClassName = "nav-item";
   let comicsClassName = "nav-item";
+  let eventsClassName = "nav-item";
+
   if (pathname === "/") {
     homeClassName = "nav-item active";
     charactersClassName = "nav-item";
     comicsClassName = "nav-item";
+    eventsClassName = "nav-item";
   } else if (pathname === "/characters") {
     homeClassName = "nav-item";
     charactersClassName = "nav-item active";
     comicsClassName = "nav-item";
+    eventsClassName = "nav-item";
   } else if (pathname === "/comics") {
     homeClassName = "nav-item";
     charactersClassName = "nav-item";
     comicsClassName = "nav-item active";
+    eventsClassName = "nav-item";
+  } else if (pathname === "/events") {
+    homeClassName = "nav-item";
+    charactersClassName = "nav-item";
+    comicsClassName = "nav-item";
+    eventsClassName = "nav-item active";
   } else {
     homeClassName = "nav-item";
     charactersClassName = "nav-item";
     comicsClassName = "nav-item";
+    eventsClassName = "nav-item";
   }
   return (
     <div>
@@ -60,6 +71,11 @@ function Navbar(props) {
             <li className={comicsClassName}>
               <Link className="nav-link" to="/comics">
                 Comics
+              </Link>
+            </li>
+            <li className={eventsClassName}>
+              <Link className="nav-link" to="/events">
+                Events
               </Link>
             </li>
           </ul>
