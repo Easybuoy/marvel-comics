@@ -102,19 +102,11 @@ const Card = styled.div`
 
       cursor: ${props => (props.hover ? "pointer" : "default")};
       transform: ${props => (props.transform ? "scale(1.02)" : "none")};
-
-      /* h4 {
-        color: ${props => (props.hover ? "#ffffff" : "inherit")};
-      } */
     }
 
     img {
       height: 250px;
     }
-
-    /* h4 {
-      color: #cc0000;
-    } */
   }
   .card-body {
     display: flex;
