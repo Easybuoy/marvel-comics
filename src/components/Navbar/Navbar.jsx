@@ -63,7 +63,7 @@ function Navbar(props) {
               </Link>
             </li>
           </ul>
-          <ul className="navbar-nav ml-auto nav-flex-icons">
+          {/* <ul className="navbar-nav ml-auto nav-flex-icons">
             <li className="nav-item avatar">
               <Link className="nav-link p-0" to="/profile">
                 <img
@@ -74,7 +74,7 @@ function Navbar(props) {
                 />
               </Link>
             </li>
-          </ul>
+          </ul> */}
         </div>
       </nav>
     </div>
