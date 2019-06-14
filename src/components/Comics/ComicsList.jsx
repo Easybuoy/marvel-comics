@@ -29,17 +29,15 @@ export default class ComicsList extends Component {
   async componentDidMount() {
     const { characterId, eventId } = this.props;
     let limit = 0;
-    let data = await fetch(
-      `${baseUrl}/v1/public/comics?limit=100&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
-    );
-
+    let dataUrl = `${baseUrl}/v1/public/comics?limit=100&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`;
     if (characterId) {
-      data = await fetch(
-        `${baseUrl}/v1/public/characters/${characterId}/comics?limit=4&offset=${this
-          .state.limit + 4}&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
-      );
+      dataUrl = `${baseUrl}/v1/public/characters/${characterId}/comics?limit=4&offset=${this
+        .state.limit + 4}&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`;
+
       limit = this.state.limit + 4;
     }
+
+    let data = await fetch(dataUrl);
 
     if (eventId) {
       data = await fetch(

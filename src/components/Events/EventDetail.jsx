@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Triple } from "react-preloading-component";
 
 import ComicsList from "../Comics/ComicsList";
+import CharacterList from "../Characters/CharactersList";
+
 import { trimWord } from "../../utils/utils";
 import { getUrlDetails } from "../../config/config";
 import { PreLoader, Card, H3, H2 } from "../../styles/Styles";
@@ -78,6 +80,9 @@ export default function EventDetail(props) {
           </div>
         </div>
       </Card>
+
+      <H2>Event Characters</H2>
+      <CharacterList eventId={event.id} />
 
       <H2>Event Comics</H2>
       <ComicsList eventId={event.id} />

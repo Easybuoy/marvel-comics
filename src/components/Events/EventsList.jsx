@@ -28,7 +28,7 @@ export default class EventsList extends Component {
     );
     if (eventsData.status !== 200) {
       return this.setState({
-        error: 'Error Loading Events, Please Try Again'
+        error: "Error Loading Events, Please Try Again"
       });
     }
 
@@ -60,7 +60,7 @@ export default class EventsList extends Component {
 
       eventsData = await eventsData.json();
       const results = eventsData.data.results;
-      console.log(results);
+
       if (results.length === 0) {
         return this.setState({
           searchError: "No Match Found For Search Criteria",
