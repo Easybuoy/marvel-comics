@@ -5,6 +5,7 @@ import ComicsList from "../Comics/ComicsList";
 import { trimWord } from "../../utils/utils";
 import { getUrlDetails } from "../../config/config";
 import { PreLoader, Card, H3, H2 } from "../../styles/Styles";
+import EventsList from "../Events/EventsList";
 
 const { baseUrl, timeStamp, publicKey, hash } = getUrlDetails();
 
@@ -72,6 +73,9 @@ export default function CharacterDetail(props) {
 
       <H2>Character Comics</H2>
       <ComicsList characterId={character.id} />
+
+      <H2>Character Events</H2>
+      <EventsList characterId={character.id} />
     </div>
   );
 }
