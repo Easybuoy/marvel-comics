@@ -31,7 +31,7 @@ export default class CharactersList extends Component {
 
     if (characterData.status !== 200) {
       return this.setState({
-        error: `${characterData.statusText}, Please Try Again`
+        error: 'Error Loading Characters, Please Try Again'
       });
     }
 

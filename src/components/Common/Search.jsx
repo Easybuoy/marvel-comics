@@ -12,7 +12,7 @@ export default function Search({ handleSearch, onSearchChange }) {
           type="text"
           placeholder="Search"
           aria-label="Search"
-          required="required"
+          required
         />
         <Button onClick={handleSearch}>Search</Button>
       </form>

@@ -8,6 +8,7 @@ import CharactersList from "./components/Characters/CharactersList";
 import CharacterDetail from "./components/Characters/CharacterDetail";
 import ComicList from "./components/Comics/ComicsList";
 import EventsList from "./components/Events/EventsList";
+import EventDetail from "./components/Events/EventDetail";
 import NotFound from "./components/Common/NotFound";
 // import Profile from "./components/Profile/Profile";
 
@@ -22,6 +23,7 @@ export default function App(props) {
         <Route exact path="/characters" component={CharactersList} />
         <Route exact path="/comics" component={ComicList} />
         <Route exact path="/events" component={EventsList} />
+        <Route exact path="/event/:event_id" component={EventDetail} />
         <Route path="*" component={NotFound} />
         {/* <Route exact path="/profile" component={Profile} /> */}
       </Switch>

@@ -28,7 +28,7 @@ export default class EventsList extends Component {
     );
     if (eventsData.status !== 200) {
       return this.setState({
-        error: `${eventsData.statusText}, Please Try Again`
+        error: 'Error Loading Events, Please Try Again'
       });
     }
 
