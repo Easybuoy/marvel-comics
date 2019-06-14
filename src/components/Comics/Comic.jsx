@@ -7,7 +7,7 @@ import { formImage, trimWord } from "../../utils/utils";
 
 export default function Comic({ comic }) {
   const { thumbnail, title, urls, name } = comic;
-  // console.log(comic);
+
   const url = urls[0].url.replace("http://", "");
   const ariaLabel = `Read more about ${title || name}`;
   const imageUrl = formImage(thumbnail.path, "", thumbnail.extension);

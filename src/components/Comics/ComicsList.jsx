@@ -17,6 +17,7 @@ export default class ComicsList extends Component {
     this.state = {
       comics: [],
       characterId: 0,
+      eventId: 0,
       limit: 0,
       searchValue: "",
       searchData: [],
@@ -26,15 +27,21 @@ export default class ComicsList extends Component {
   }
 
   async componentDidMount() {
-    const { characterId } = this.props;
+    const { characterId, eventId } = this.props;
     let limit = 0;
-    let data = await fetch(
-      `${baseUrl}/v1/public/comics?limit=100&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
-    );
-
+    let dataUrl = `${baseUrl}/v1/public/comics?limit=100&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`;
     if (characterId) {
+      dataUrl = `${baseUrl}/v1/public/characters/${characterId}/comics?limit=4&offset=${this
+        .state.limit + 4}&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`;
+
+      limit = this.state.limit + 4;
+    }
+
+    let data = await fetch(dataUrl);
+
+    if (eventId) {
       data = await fetch(
-        `${baseUrl}/v1/public/characters/${characterId}/comics?limit=4&offset=${this
+        `${baseUrl}/v1/public/events/${eventId}/comics?limit=4&offset=${this
           .state.limit + 4}&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
       );
       limit = this.state.limit + 4;
@@ -42,7 +49,7 @@ export default class ComicsList extends Component {
 
     if (data.status !== 200) {
       return this.setState({
-        error: `${data.statusText}, Please Try Again`
+        error: "Error Loading Comics, Please Try Again"
       });
     }
 
@@ -52,17 +59,28 @@ export default class ComicsList extends Component {
     this.setState({
       comics: results,
       characterId: characterId,
-      limit: limit
+      limit: limit,
+      eventId: eventId
     });
   }
 
   handleMoreComics = async () => {
-    const { characterId, comics } = this.state;
+    const { characterId, comics, eventId } = this.state;
 
-    let data = await fetch(
-      `${baseUrl}/v1/public/characters/${characterId}/comics?limit=4&offset=${this
-        .state.limit + 4}&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
-    );
+    let data = "";
+    if (characterId) {
+      data = await fetch(
+        `${baseUrl}/v1/public/characters/${characterId}/comics?limit=4&offset=${this
+          .state.limit + 4}&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
+      );
+    }
+
+    if (eventId) {
+      data = await fetch(
+        `${baseUrl}/v1/public/events/${eventId}/comics?limit=4&offset=${this
+          .state.limit + 4}&ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
+      );
+    }
 
     data = await data.json();
     let results = data.data.results;
@@ -121,7 +139,7 @@ export default class ComicsList extends Component {
   };
 
   render() {
-    const { comics, characterId } = this.state;
+    const { comics, characterId, eventId } = this.state;
 
     if (this.state.error) {
       return (
@@ -162,16 +180,42 @@ export default class ComicsList extends Component {
       );
     }
 
-    if (comics.length === 0) {
+    // If event id is present check if there is a comic for that event.
+    if (eventId) {
+      if (comics.length === 0) {
+        return (
+          <p className="text-center mt-5 mb-5 pb-5">
+            No Comic Found for this Event.
+          </p>
+        );
+      }
+
       return (
-        <div className="mt-5 mb-5">
-          {this.props.characterId ? (
-            <LineLoader />
-          ) : (
-            <Triple color="#CC0000" size={80} />
-          )}
-        </div>
+        <CardGroup>
+          {comics.map((comic, i) => {
+            if (comics.length - 1 === i) {
+              return (
+                <Fragment key={`${comic.id}${i}`}>
+                  <Comic comic={comic} />
+                  <div className="mb-5" style={{ margin: "0 auto" }}>
+                    <Button onClick={this.handleMoreComics}>Load More</Button>
+                  </div>
+                </Fragment>
+              );
+            } else {
+              return <Comic key={`${comic.id}${i}`} comic={comic} />;
+            }
+          })}
+        </CardGroup>
       );
+    }
+
+    let Loader = <LineLoader />;
+    if (comics.length === 0) {
+      if (!this.props.characterId && !this.props.eventId) {
+        Loader = <Triple color="#CC0000" size={80} />;
+      }
+      return <div className="mt-5 mb-5">{Loader}</div>;
     }
     let SearchComponent = (
       <Search

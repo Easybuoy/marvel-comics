@@ -2,28 +2,38 @@ import React, { useState } from "react";
 import { Triple } from "react-preloading-component";
 
 import ComicsList from "../Comics/ComicsList";
+import CharacterList from "../Characters/CharactersList";
+
 import { trimWord } from "../../utils/utils";
 import { getUrlDetails } from "../../config/config";
 import { PreLoader, Card, H3, H2 } from "../../styles/Styles";
-import EventsList from "../Events/EventsList";
 
 const { baseUrl, timeStamp, publicKey, hash } = getUrlDetails();
 
-export default function CharacterDetail(props) {
-  const [character, setCharacter] = useState([]);
+export default function EventDetail(props) {
+  const [event, setEvent] = useState([]);
 
   async function fetDetail() {
     let data = await fetch(
-      `${baseUrl}/v1/public/characters/${
-        props.match.params.character_id
+      `${baseUrl}/v1/public/events/${
+        props.match.params.event_id
       }?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
     );
     data = await data.json();
 
-    setCharacter(data.data.results[0]);
+    // let datacharacters = await fetch(
+    //   `${baseUrl}/v1/public/events/${
+    //     props.match.params.event_id
+    //   }/characters?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`
+    // );
+
+    // datacharacters = await datacharacters.json();
+    //   console.log(datacharacters)
+
+    setEvent(data.data.results[0]);
   }
 
-  if (character.length === 0) {
+  if (event.length === 0) {
     fetDetail();
 
     return (
@@ -33,7 +43,7 @@ export default function CharacterDetail(props) {
     );
   }
 
-  let imageUrl = `${character.thumbnail.path}.${character.thumbnail.extension}`;
+  let imageUrl = `${event.thumbnail.path}.${event.thumbnail.extension}`;
 
   return (
     <div className="col-lg-12 col-md-12 col-sm-12 text-center">
@@ -50,7 +60,7 @@ export default function CharacterDetail(props) {
                   fontWeight: "bolder"
                 }}
               >
-                {trimWord(character.name, 0, "Name")}
+                {trimWord(event.title, 0, "Name")}
               </p>
               <img
                 src={imageUrl}
@@ -60,22 +70,22 @@ export default function CharacterDetail(props) {
                   margin: "0 auto",
                   borderRadius: "50%"
                 }}
-                alt={character.name}
+                alt={event.name}
               />
             </div>
 
             <H3 className="text-center mt-3">
-              {trimWord(character.description, 0, "Description")}
+              {trimWord(event.description, 0, "Description")}
             </H3>
           </div>
         </div>
       </Card>
 
-      <H2>Character Comics</H2>
-      <ComicsList characterId={character.id} />
+      <H2>Event Characters</H2>
+      <CharacterList eventId={event.id} />
 
-      <H2>Character Events</H2>
-      <EventsList characterId={character.id} />
+      <H2>Event Comics</H2>
+      <ComicsList eventId={event.id} />
     </div>
   );
 }

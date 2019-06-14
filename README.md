@@ -6,7 +6,8 @@
 Progressive Web Application that displays information about Marvel Comics and Characters.
 
 <img src="marvel.png" alt="Marvel Comic" />
-<code><h3>Link to application: https://marvel-comic-characters.netlify.com/</h3></code>
+
+<code>Link to application: https://marvel-comic-characters.netlify.com/</code>
 
 <hr>
 
