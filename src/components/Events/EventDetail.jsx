@@ -9,7 +9,6 @@ import { PreLoader, Card, H3, H2 } from "../../styles/Styles";
 const { baseUrl, timeStamp, publicKey, hash } = getUrlDetails();
 
 export default function EventDetail(props) {
-  console.log(props.match.params);
   const [event, setEvent] = useState([]);
 
   async function fetDetail() {
